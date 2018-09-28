@@ -11,7 +11,9 @@ public class Circle extends Shape {
     public static Circle locked = null; // circle that is being moved by mouse
 
     private double radius, mass;
+    
     private Vector prevoiusCenter = new Vector(0, 0);
+    private double dx = 0, dy = 0;
 
     private Color color = Color.LIGHT_GRAY;
 
@@ -33,8 +35,8 @@ public class Circle extends Shape {
         prevoiusCenter.setY(center.y);
         
         if (this.equals(locked)) {  // being moved by mouse
-            center.setX(Main.mouseX);
-            center.setY(Main.mouseY);
+            center.setX(Main.mouseX - dx);
+            center.setY(Main.mouseY - dy);
             
             bounce(Main.WIDTH, Main.HEIGHT);
             
@@ -171,6 +173,14 @@ public class Circle extends Shape {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public void setDx(double dx) {
+        this.dx = dx;
+    }
+
+    public void setDy(double dy) {
+        this.dy = dy;
     }
 
 }

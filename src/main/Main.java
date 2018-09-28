@@ -43,11 +43,6 @@ public class Main implements MouseListener, MouseMotionListener, Runnable {
         display.getCanvas().addMouseListener(this);
         display.getCanvas().addMouseMotionListener(this);
 
-//        for (int i = 0; i < 2; i++) {
-//            Circle c = new Circle(Math.random() * width, Math.random() * height, Math.random() * 80 + 10, 10);
-//            c.getVelocity().setX(Math.random() * 5 + 1);
-//            c.getVelocity().setY(Math.random() * 5 + 1);
-//        }
         Circle c = null;
         for (int i = 0; i < 60; i++) {
             c = new Circle(Math.random() * width, Math.random() * height, Math.random() * 10 + 10, Math.random() * 5 + 2);
@@ -73,8 +68,6 @@ public class Main implements MouseListener, MouseMotionListener, Runnable {
         for (Circle c : Circle.circles) {
             c.accelerate(gravity);
             c.update();
-            //c.bounce(width, height);
-            //c.render(g);
         }
 
         for (Circle c : Circle.circles) {
@@ -124,6 +117,8 @@ public class Main implements MouseListener, MouseMotionListener, Runnable {
 
         for (Circle c : Circle.circles) {
             if (c.pointInside(me.getX(), me.getY())) {
+                c.setDx(mouseX - c.getCenter().getX());
+                c.setDy(mouseY - c.getCenter().getY());
                 Circle.locked = c;
                 return;
             }
